@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Website</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css", ><link rel="stylesheet" href="Sakura/sakura.css">
+</head>
+
+
+<body>
+    <img class="bgimg" src="/Assets/BToIUe2.jpeg">
+    <script src="Sakura/sakura.js"></script>
+    <script>var sakura = new Sakura('body');</script>
+    <!-- <div class="full-page-covers">
+        <div class="anti-mobile">
+            <h1>Hi- Sorry, this page doesn't support mobile, go <a href="https://guns.lol/hyperiya">here</a> instead</h1>
+        </div>
+        <div class="enter-page">
+            <h1>click to enter...</h1>
+        </div>
+        <div class="loading-screen">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>          
+    </div>  -->
+    <!-- Link to JavaScript file -->
+    <script src="script.js"></script>
+
+    <div class="profile-columns">
+        <div class="item" data-text="discord" onclick="window.location.replace('https://discordapp.com/users/328275328373882880')">
+            <img src="./Assets/discord_icon.png"><span>Discord</span>
+        </div>
+        <div class="item" data-text="gamebanana" onclick="window.location.replace('https://gamebanana.com/members/3298349')">
+            <img src="./Assets/gamebanana_icon.webp"></span><span>Gamebanana</span>
+        </div>
+        <div class="item" data-text="patreon" onclick="window.location.replace('https://patreon.com/hyperiya')">
+            <img src="./Assets/patreon_icon.png"><span>Patreon</span>
+        </div>
+        <div class="item" data-text="steam" onclick="window.location.replace('https://steamcommunity.com/id/hypxria/')">
+            <img src="./Assets/steam_icon.png"><span>Steam</span>
+        </div>
+        <div class="item" data-text="github" onclick="window.location.replace('https://github.com/Hypxria')">
+            <img src="./Assets/github_icon.png"><span>Github</span>
+        </div>
+        <div class="item" data-text="pinterest" onclick="window.location.replace('https://www.pinterest.com/hyperiyaa/')">
+            <img src="./Assets/pinterest_icon.png"><span>Pinterest</span>
+        </div>
+    </div>
+
+
+
+    <audio id="bgMusic" loop>
+        <source src="Assets/spotifydown.com - weathergirl - FLAVOR FOLEY.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="audio-section">
+        <div class="audio-controls" role="group" aria-label="Audio controls">
+            <!-- Music Toggle Button -->
+            <button 
+                id="musicToggle"
+                class="audio-toggle"
+                aria-label="Toggle music"
+                aria-pressed="false"
+            >
+                <span class="icon-wrapper">
+                    <svg 
+                        class="volume-icon" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 48 48" 
+                        aria-hidden="true"
+                    >
+                        <defs>
+                            <!-- Base volume mask -->
+                            <mask id="volume-mask">
+                                <path 
+                                    fill="none" 
+                                    stroke="#fff" 
+                                    stroke-width="4"
+                                    stroke-linejoin="round"
+                                    d="M24 6v36c-7 0-12.201-9.16-12.201-9.16H6a2 2 0 0 1-2-2V17.01a2 2 0 0 1 2-2h5.799S17 6 24 6Z"
+                                />
+                                <!-- Volume wave lines -->
+                                <path 
+                                    class="volume-waves"
+                                    fill="none"
+                                    stroke="#fff" 
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    d="M32 15a11.91 11.91 0 0 1 1.684 1.859A12.07 12.07 0 0 1 36 24c0 2.654-.846 5.107-2.278 7.09A11.936 11.936 0 0 1 32 33
+                                    M34.236 41.186C40.084 37.696 44 31.305 44 24c0-7.192-3.796-13.496-9.493-17.02"
+                                />
+                                <!-- Mute X line (visible when muted) -->
+                                <path 
+                                    class="mute-x"
+                                    fill="none"
+                                    stroke="#fff" 
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    d="M38 20L32 26M32 20L38 26"
+                                />
+                            </mask>
+                        </defs>
+                        <rect 
+                            width="48" 
+                            height="48" 
+                            fill="currentColor" 
+                            mask="url(#volume-mask)"
+                        />
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <div class="song-info">
+            <span class="time" id="date-time"></span>
+            <span class="song-text">Now Playing: weathergirl - FLAVOR FOLEY</span>
+        </div>
+    </div>
+
+    <div class="email-icon">
+        <a href="mailto:hyperiya.vcz@outlook.com" aria-label="Send email">
+            <div class="icon-mask"></div>
+        </a>
+    </div>
+
+    <div class="info-icon">
+        <div class="info-mask"></div>
+    </div>
+
+    <div class="popup-box" id="infoPopup">
+        <div class="popup-content">
+            <div class="header-text">Details</div>
+            <div class="credit-text">
+                <ul class="credit-container" style="font-family: Odin; list-style: none; padding: 2vmin;">
+                    <li>🎨 Design: Hyperiya</li>
+                    <li>⚡ Last Updated: 2/25/2025</li>
+                    <li>🌐 Version: 1.0</li>
+                    <br>
+                    <li class="artists-button-text">Artists</li>
+                    <div class="artists-details">
+                        <a href="https://x.com/s7phonn">1. s7phonn<br></a>
+                        <a>2. Unknown (TBH i just stole this from google)<br></a>
+                        <a href="https://jp.pinterest.com/salembright777/">3. SalemBRIght<br></a>
+                        <a>4. gmanee<br></a>
+                        <a href="https://tankxcodex.newgrounds.com/">5. TankxCodex<br></a>
+                        <a href="https://x.com/kanekoshake">6. kanekoshake<br></a>
+                    </div>
+                </ul>
+            </div>
+            <button class="close-button">×</button>
+        </div>
+    </div>
+</body>
+</html>

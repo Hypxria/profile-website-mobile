@@ -1,0 +1,556 @@
+/* 
+TODO: 
+BG MUSIC
+*/
+
+.bgimg {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: blur(10px) brightness(50%)
+}
+
+:root {
+  --discord-color: #525dea;
+  --gamebanana-color: #c39313;
+  --patreon-color: #f86c59;
+  --steam-color: #0a2668;
+  --github-color: #2a7aef;
+  --pinterest-color: #e60023;
+}
+
+
+* {
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none;     /* For Firefox */
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* For Webkit browsers (Chrome, Safari, etc.) */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  animation: fadeIn 0.5s ease-out forwards;
+  margin: 0;
+  padding: 0;
+  background-color: #232627;
+}
+/* Profiles */
+
+
+
+.profile-columns {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item {
+  margin: 5px;
+  font-family: Odin;
+  background-color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30vw;
+  padding-right: 30vw;
+  text-align: center;
+  border-radius: 10px;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.item span {
+  margin-left: 5px;
+}
+
+.item img{
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transform: translateY(25%);
+}
+
+/* TEXT COLORS */
+.item[data-text="discord"] span { color: var(--discord-color); }
+.item[data-text="gamebanana"] span { color: var(--gamebanana-color); }
+.item[data-text="patreon"] span { color: var(--patreon-color); }
+.item[data-text="steam"] span { color: var(--steam-color); }
+.item[data-text="github"] span { color: var(--github-color); }
+.item[data-text="pinterest"] span { color: var(--pinterest-color); }
+
+/* Email Icon */
+.email-icon {
+  opacity: 0.8;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.icon-mask {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff; /* Change this to match your theme */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'%3E%3C/path%3E%3Cpolyline points='22,6 12,13 2,6'%3E%3C/polyline%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'%3E%3C/path%3E%3Cpolyline points='22,6 12,13 2,6'%3E%3C/polyline%3E%3C/svg%3E");
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-mask:hover {
+  transform: scale(1.1);
+  background-color: #cccccc; /* Hover color */
+}
+
+/* Optional: Add animation on hover */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.icon-mask:hover {
+  animation: pulse 1s infinite;
+  background-color: #cccccc;
+}
+
+
+/* Music */
+
+.audio-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Space between controls and text */
+  position: fixed; /* Keep your existing positioning */
+  top: 0px;
+  left: 0px;
+}
+
+/* Controls */
+.audio-controls {
+  position: relative;
+  top: 20px;
+  left: 20px;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  width: 40px;
+  height: 40px;
+}
+
+
+
+
+/* Music Toggle Button */
+#musicToggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transform-origin: center;
+  transform: translate(0%, 0%);
+}
+
+#musicToggle:hover {
+  aspect-ratio: 1/1;
+  width: fit-content;
+  height: fit-content;
+  transform: translate(0%, 0%) scale(1.15);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#musicToggle:active {
+  transform: translate(0%, 0%) scale(0.95);
+}
+
+/* Default state - showing volume */
+.volume-waves {
+  opacity: 1;
+}
+
+.mute-x {
+  opacity: 0;
+}
+
+/* Muted state */
+[data-muted="true"] .volume-waves {
+  opacity: 0;
+}
+
+[data-muted="true"] .mute-x {
+  opacity: 1;
+}
+
+.volume-icon:hover {
+  opacity: 0.8;
+}
+
+
+/* Volume Slider Container */
+
+
+/* Text */
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: inherit;
+  pointer-events: none;
+  transform: translateY(16px) translateX(10px)
+}
+
+.time {
+  transform: translateX(-2px);
+  color: #ffffff;
+  font-size: 4.5vh;
+  white-space: nowrap;
+  margin-bottom: 0px; /* Space between top and bottom text */
+  font-family: 'Odin';
+  font-weight: 1000;
+  user-select: none;
+}
+
+.song-text {
+  color: #ffffff;
+  font-size: 1.25vh; /* Slightly smaller for artist name */
+  white-space: nowrap;
+  opacity: 0.8; /* Slightly more subtle */
+  font-family: 'OdinLight';
+  user-select: none;
+}
+
+/* Optional: Animation for when music is playing */
+@keyframes musicPlaying {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.playing #musicToggle {
+  animation: musicPlaying 2s infinite;
+}
+
+@font-face {
+  font-family: 'Odin'; /* Name you'll use to reference this font */
+  src: url('Assets/odin-rounded.regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OdinLight'; /* Name you'll use to reference this font */
+  src: url('Assets/odin-rounded.light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@keyframes unblur {
+  from {
+      filter: blur(20px);
+      opacity: 0;
+  }
+  to {
+      filter: blur(0);
+      opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Apply animations with better performance */
+.image-track-container,
+.image-track,
+.image-item {
+  animation: unblur 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+body {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Credit Box Icon thingy */
+.info-icon {
+  opacity: 0.8;
+  position: fixed;
+  bottom: 20px;
+  left: 70px;
+  z-index: 100;
+}
+
+.info-mask {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/%3E%3C/svg%3E");
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.info-mask:hover {
+  transform: scale(1.1);
+  background-color: #cccccc;
+}
+
+.popup-box {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  background: rgba(37, 40, 46, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  z-index: 1001;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+}
+
+.popup-content {
+  user-select: none;
+  position: relative;
+  padding: 20px;
+  color: white;
+}
+
+.header-text {
+  font-family: Odin;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: -20px;
+  color: #ffffff;
+}
+
+.credit-text {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #cccccc;
+}
+
+/* Overlay background */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  opacity: 0;
+}
+
+.credit-container a {
+  font-family: Odin;
+  white-space: pre;
+}
+
+.artists-button-text {
+  color: #2a7aef;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+}
+
+.artists-button-text:hover {
+  color: #525dea;
+}
+
+.artists-details {
+  display: none;
+  position: relative;
+  transform: translateY(1vh);
+  opacity: 0;
+}
+
+
+/* Animations */
+@keyframes boxFadeIn {
+  from {
+      opacity: 0;
+      transform: translate(-50%, -48%);
+  }
+  to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes boxFadeOut {
+  from {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+  }
+  to {
+      opacity: 0;
+      transform: translate(-50%, -48%);
+  }
+}
+
+@keyframes boxFadeInNT {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes boxFadeOutNT {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Anti-Mobile */
+.anti-mobile {
+  display: none;
+  user-select: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #111212;
+  color: #111212;
+  z-index: 100000;
+}
+
+.anti-mobile h1 {
+  font-family: Odin;
+  position: absolute;
+  font-size: 2rem;
+  background-color: transparent;
+  color: #ffffff;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.enter-page {
+  display: block;
+  user-select: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1, 2, 2, 0.75);
+  z-index: 1000;
+  backdrop-filter: blur(30px);
+}
+
+.enter-page h1 {
+  font-family: Odin;
+  position: absolute;
+  font-size: 2rem;
+  background-color: transparent;
+  color: #ffffff;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Progress Bar */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #232627;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  max-width: 90%;
+  width: 0%;
+  height: 10px;
+  background-color: #ff4163;
+  transition: width 0.3s ease;
+  border-radius: 5vh;
+}

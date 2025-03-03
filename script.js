@@ -35,50 +35,64 @@ let pendingUrl = '';
 function confirmNavigation(url) {
     pendingUrl = url;
     const popup = document.getElementById('linkPopup');
-    const overlay = document.querySelector('.popup-overlay');
+    const blurOverlay = document.querySelector('.blur-overlay');
     
-    // Show overlay and popup
-    overlay.style.display = 'block';
+    // Show blur overlay and popup
+    blurOverlay.style.display = 'block';
     popup.style.display = 'block';
     
     // Trigger animations
     requestAnimationFrame(() => {
-        overlay.style.animation = 'overlayFadeIn 0.3s forwards';
-        popup.style.animation = 'boxFadeIn 0.3s forwards';
+        blurOverlay.classList.add('active');
+        popup.style.opacity = '1';
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('linkPopup');
-    const overlay = document.querySelector('.blur-overlay');
+    const blurOverlay = document.querySelector('.blur-overlay');
     const confirmButton = document.getElementById('confirmLink');
     const cancelButton = document.getElementById('cancelLink');
 
+    if (!popup || !blurOverlay || !confirmButton || !cancelButton) {
+        console.error('One or more elements not found');
+        return;
+    }
+
     function hidePopup() {
-        overlay.style.animation = 'overlayFadeOut 0.3s forwards';
-        popup.style.animation = 'boxFadeOut 0.3s forwards';
+        // Hide both overlay and popup
+        blurOverlay.classList.remove('active');
+        popup.style.opacity = '0';
         
         setTimeout(() => {
-            overlay.style.display = 'none';
+            blurOverlay.style.display = 'none';
             popup.style.display = 'none';
         }, 300);
     }
 
+    // Add click event for confirm button
     confirmButton.addEventListener('click', () => {
-        hidePopup();
-        window.location.href = pendingUrl;
+        if (pendingUrl) {
+            hidePopup();
+            setTimeout(() => {
+                window.location.href = pendingUrl;
+            }, 300);
+        }
     });
 
+    // Add click event for cancel button
     cancelButton.addEventListener('click', hidePopup);
+
+    // Close popup when clicking overlay
+    blurOverlay.addEventListener('click', hidePopup);
 
     // Prevent popup from closing when clicking inside it
     popup.addEventListener('click', (e) => {
         e.stopPropagation();
     });
-
-    // Close popup when clicking overlay
-    overlay.addEventListener('click', hidePopup);
 });
+
+
 
 
 
@@ -140,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create overlay
     const overlay = document.createElement('div');
-    overlay.className = 'popup-overlay';
+    overlay.className = 'blur-overlay';
     document.body.appendChild(overlay);
 
     function showPopup() {

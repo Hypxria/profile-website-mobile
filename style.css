@@ -337,6 +337,8 @@ body {
   background-color: #cccccc;
 }
 
+
+
 .popup-box {
   display: none;
   position: absolute;
@@ -353,12 +355,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.popup-content {
-  user-select: none;
-  position: relative;
-  padding: 20px;
-  color: white;
-}
+
 
 .header-text {
   font-family: Odin;
@@ -400,7 +397,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
+  z-index: 999;
   opacity: 0;
 }
 
@@ -553,4 +550,52 @@ body {
   background-color: #ff4163;
   transition: width 0.3s ease;
   border-radius: 5vh;
+}
+/* confirm */
+#linkPopup {
+  outline: 2px solid #fff;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.popup-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: background-color 0.3s;
+  font-family: Odin;
+}
+
+.popup-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.popup-content {
+  user-select: none;
+  position: relative;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.popup-content * {
+  font-family: Odin;
 }

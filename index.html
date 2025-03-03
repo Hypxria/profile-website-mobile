@@ -11,7 +11,7 @@
     <img class="bgimg" src="/Assets/BToIUe2.jpeg">
     <script src="Sakura/sakura.js"></script>
     <script>var sakura = new Sakura('body');</script>
-    <!-- <div class="full-page-covers">
+    <div class="full-page-covers">
         <div class="anti-mobile">
             <h1>Hi- Sorry, this page doesn't support mobile, go <a href="https://guns.lol/hyperiya">here</a> instead</h1>
         </div>
@@ -21,27 +21,27 @@
         <div class="loading-screen">
             <div class="progress-bar" id="progressBar"></div>
         </div>          
-    </div>  -->
+    </div> 
     <!-- Link to JavaScript file -->
     <script src="script.js"></script>
 
     <div class="profile-columns">
-        <div class="item" data-text="discord" onclick="window.location.replace('https://discordapp.com/users/328275328373882880')">
+        <div class="item" data-text="discord" onclick="confirmNavigation('https://discordapp.com/users/328275328373882880')">
             <img src="./Assets/discord_icon.png"><span>Discord</span>
         </div>
-        <div class="item" data-text="gamebanana" onclick="window.location.replace('https://gamebanana.com/members/3298349')">
+        <div class="item" data-text="gamebanana" onclick="confirmNavigation('https://gamebanana.com/members/3298349')">
             <img src="./Assets/gamebanana_icon.webp"></span><span>Gamebanana</span>
         </div>
-        <div class="item" data-text="patreon" onclick="window.location.replace('https://patreon.com/hyperiya')">
+        <div class="item" data-text="patreon" onclick="confirmNavigation('https://patreon.com/hyperiya')">
             <img src="./Assets/patreon_icon.png"><span>Patreon</span>
         </div>
-        <div class="item" data-text="steam" onclick="window.location.replace('https://steamcommunity.com/id/hypxria/')">
+        <div class="item" data-text="steam" onclick="confirmNavigation('https://steamcommunity.com/id/hypxria/')">
             <img src="./Assets/steam_icon.png"><span>Steam</span>
         </div>
-        <div class="item" data-text="github" onclick="window.location.replace('https://github.com/Hypxria')">
+        <div class="item" data-text="github" onclick="confirmNavigation('https://github.com/Hypxria')">
             <img src="./Assets/github_icon.png"><span>Github</span>
         </div>
-        <div class="item" data-text="pinterest" onclick="window.location.replace('https://www.pinterest.com/hyperiyaa/')">
+        <div class="item" data-text="pinterest" onclick="confirmNavigation('https://www.pinterest.com/hyperiyaa/')">
             <img src="./Assets/pinterest_icon.png"><span>Pinterest</span>
         </div>
     </div>
@@ -126,6 +126,8 @@
         <div class="info-mask"></div>
     </div>
 
+    
+
     <div class="popup-box" id="infoPopup">
         <div class="popup-content">
             <div class="header-text">Details</div>
@@ -149,5 +151,16 @@
             <button class="close-button">×</button>
         </div>
     </div>
+    <div class="blur-overlay"></div>
+    <div id="linkPopup" class="popup">
+        <div class="popup-content">
+            <h2>External Link</h2>
+            <p>Are you sure you want to visit this link?</p>
+            <div class="popup-buttons">
+                <button class="popup-button" id="confirmLink">Continue</button>
+                <button class="popup-button" id="cancelLink">Cancel</button>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

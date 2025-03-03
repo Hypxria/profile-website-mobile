@@ -6,6 +6,7 @@ let trackMoved = false;
 let startX = 0;
 
 const volumeSlider = document.getElementById('volumeSlider');
+const profiles = document.querySelector('item')
 
 function isVolumeControl(e) {
     const volumeControls = document.querySelector('.audio-controls'); // Add this class to your volume controls container
@@ -28,6 +29,57 @@ function isVolumeControl(e) {
 
 
 // Music
+
+let pendingUrl = '';
+
+function confirmNavigation(url) {
+    pendingUrl = url;
+    const popup = document.getElementById('linkPopup');
+    const overlay = document.querySelector('.popup-overlay');
+    
+    // Show overlay and popup
+    overlay.style.display = 'block';
+    popup.style.display = 'block';
+    
+    // Trigger animations
+    requestAnimationFrame(() => {
+        overlay.style.animation = 'overlayFadeIn 0.3s forwards';
+        popup.style.animation = 'boxFadeIn 0.3s forwards';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('linkPopup');
+    const overlay = document.querySelector('.blur-overlay');
+    const confirmButton = document.getElementById('confirmLink');
+    const cancelButton = document.getElementById('cancelLink');
+
+    function hidePopup() {
+        overlay.style.animation = 'overlayFadeOut 0.3s forwards';
+        popup.style.animation = 'boxFadeOut 0.3s forwards';
+        
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+        }, 300);
+    }
+
+    confirmButton.addEventListener('click', () => {
+        hidePopup();
+        window.location.href = pendingUrl;
+    });
+
+    cancelButton.addEventListener('click', hidePopup);
+
+    // Prevent popup from closing when clicking inside it
+    popup.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Close popup when clicking overlay
+    overlay.addEventListener('click', hidePopup);
+});
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -147,12 +199,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         // true for mobile device
-        console.log("Mobile -- Skipping")
-        antiMobile.style.display = 'block';
-        infoIcon.style.display = 'none';
-        emailIcon.style.display = 'none';
-      } else {
-        console.log("Desktop/PC");
+        console.log("Mobile -- Stay")
         enterPage.addEventListener('click', () => {
             infoIcon.style.display = 'block';
             emailIcon.style.display = 'block';
@@ -165,6 +212,24 @@ document.addEventListener('DOMContentLoaded', function(){
                 enterPage.style.display = 'none';
             }, 600);
         });
+
+      } else {
+        console.log("Desktop/PC -- Go");
+        let devmode=true
+        if (devmode) {
+            enterPage.addEventListener('click', () => {
+            infoIcon.style.display = 'block';
+            emailIcon.style.display = 'block';
+            enterPage.style.animation = 'boxFadeOutNT 0.6s forwards'
+            
+            entered = true
+            music.play();
+            
+            setTimeout(() => {
+                enterPage.style.display = 'none';
+            }, 600);
+            });
+        }
         return;
     }
 }); 
@@ -172,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function(){
 window.addEventListener('load', function() {
     const loadingScreen = document.querySelector('.loading-screen');
     const progressBar = document.getElementById('progressBar');
-    
+
     // Set up the back-and-forth animation
     let progress = 0;
     let direction = 1; // 1 for right, -1 for left

@@ -192,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Fuck mobile users <3 (& enter page is here)
 document.addEventListener('DOMContentLoaded', function(){
     const music = document.getElementById('bgMusic');
-    const antiMobile = document.querySelector('.anti-mobile');
     const infoIcon = document.querySelector('.info-icon');
     const emailIcon = document.querySelector('.email-icon');
     const enterPage = document.querySelector('.enter-page')
@@ -243,37 +242,38 @@ window.addEventListener('load', function() {
     let direction = 1; // 1 for right, -1 for left
     let cycles = 0;
     const maxCycles = 2; // Number of full cycles before completing
-    
-    const interval = setInterval(function() {
-      progress += 5 * direction;
-      
-      // Change direction when reaching edges
-      if (progress >= 100) {
-        direction = -1;
-        cycles += 0.5; // Count half cycle
-      } else if (progress <= 0) {
-        direction = 1;
-        cycles += 0.5; // Count half cycle
-      }
-      
-      // Update the progress bar width
-      progressBar.style.width = progress + '%';
-      
-      // Once we've completed the desired number of cycles, finish loading
-      if (cycles >= maxCycles) {
-        clearInterval(interval);
+    if (!entered){
+        const interval = setInterval(function() {
+        progress += 5 * direction;
         
-        // Final fill to 100%
-        progressBar.style.transition = 'width 0.3s ease-in';
-        progressBar.style.width = '100%';
+        // Change direction when reaching edges
+        if (progress >= 100) {
+            direction = -1;
+            cycles += 0.5; // Count half cycle
+        } else if (progress <= 0) {
+            direction = 1;
+            cycles += 0.5; // Count half cycle
+        }
         
-        // Fade out the loading screen
-        setTimeout(() => {
-          loadingScreen.style.animation = 'boxFadeOutNT 0.4s forwards';
-          setTimeout(() => {
-              loadingScreen.style.display = 'none';
-          }, 450);
-        }, 300);
-      }
-    }, 50);
+        // Update the progress bar width
+        progressBar.style.width = progress + '%';
+        
+        // Once we've completed the desired number of cycles, finish loading
+        if (cycles >= maxCycles) {
+            clearInterval(interval);
+            
+            // Final fill to 100%
+            progressBar.style.transition = 'width 0.3s ease-in';
+            progressBar.style.width = '100%';
+            
+            // Fade out the loading screen
+            setTimeout(() => {
+            loadingScreen.style.animation = 'boxFadeOutNT 0.4s forwards';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 450);
+            }, 300);
+        }
+        }, 50);
+    }
 });
